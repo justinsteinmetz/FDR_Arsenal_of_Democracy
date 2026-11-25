@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FDR: Arsenal of Democracy – 20-minute lesson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ede3cb; --paper2:#e4d8ba; --ink:#1c1b18; --mute:#5d5848;
+    --fear:#b5311f;   /* threat */
+    --calm:#2b6e69;   /* reassurance */
+    --pivot:#d9a021;  /* hinge */
+    --rule:#1c1b18;
+    --geo:"Jost","Futura","Century Gothic","Trebuchet MS",sans-serif;
+    --serif:"EB Garamond","Garamond","Palatino Linotype",Palatino,Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font:20px/1.5 var(--serif);padding:0 0 90px}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px}
+
+  /* ---------- cover ---------- */
+  .cover{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);border-bottom:6px solid var(--fear)}
+  .cover .wrap{position:relative;padding-top:26px;padding-bottom:30px;min-height:330px}
+  .halftone{position:absolute;inset:0;opacity:.22;pointer-events:none;
+    background-image:radial-gradient(circle at center,var(--paper) 1.1px,transparent 1.6px);
+    background-size:7px 7px;
+    -webkit-mask-image:linear-gradient(115deg,transparent 35%,#000 100%);mask-image:linear-gradient(115deg,transparent 35%,#000 100%)}
+  .geo{position:absolute;right:-8px;top:0;width:min(58%,330px);height:100%;pointer-events:none}
+  .kicker{font:600 12px/1.3 var(--geo);letter-spacing:.24em;text-transform:uppercase;color:var(--pivot)}
+  h1{font:700 46px/.92 var(--geo);letter-spacing:-.01em;text-transform:uppercase;margin:16px 0 0;max-width:60%}
+  h1 span{display:block}
+  h1 .of{font:500 17px/1 var(--geo);letter-spacing:.3em;margin:10px 0 8px;color:var(--paper);opacity:.85}
+  .dateline{margin:20px 0 0;max-width:62%;font:italic 500 19px/1.35 var(--serif);color:#e9dfc6}
+  .dateline b{font:600 12px/1 var(--geo);font-style:normal;letter-spacing:.2em;text-transform:uppercase;color:var(--pivot);display:block;margin-bottom:6px}
+
+  /* ---------- stage bar ---------- */
+  .bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:3px solid var(--ink);padding:10px 0 0}
+  .bar .wrap{padding-bottom:0}
+  .barlabel{font:600 13px/1.2 var(--geo);letter-spacing:.14em;text-transform:uppercase;padding-bottom:9px;display:flex;justify-content:space-between;gap:10px}
+  .barlabel em{font-style:normal;color:var(--fear)}
+  .track{display:flex;gap:0;height:9px}
+  .seg{position:relative;background:var(--paper2);border-right:3px solid var(--paper)}
+  .seg:last-child{border-right:0}
+  .seg i{position:absolute;inset:0;background:transparent}
+  .seg.done i{background:var(--ink)}
+  .seg.now i{background:var(--fear)}
+
+  main{padding-top:22px}
+
+  /* ---------- stages ---------- */
+  .stage{position:relative;margin:0 0 14px;border:3px solid var(--ink);background:var(--paper)}
+  .shead{display:flex;align-items:stretch;cursor:pointer}
+  .num{flex:0 0 62px;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--paper);font:700 34px/1 var(--geo)}
+  .stitle{flex:1;padding:12px 14px 10px;min-width:0}
+  .stitle h2{font:700 21px/1.1 var(--geo);text-transform:uppercase;letter-spacing:.04em;margin:0}
+  .mins{display:block;margin-top:5px;font:500 12.5px/1 var(--geo);letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+  .stage.active .num{background:var(--fear)}
+  .stage[data-c="calm"].active .num{background:var(--calm)}
+  .stage[data-c="pivot"].active .num{background:var(--pivot);color:var(--ink)}
+  .stage:not(.active){border-color:#8d8670}
+  .stage:not(.active) .num{background:#8d8670}
+  .stage:not(.active) .stitle h2{color:var(--mute)}
+  .sbody{display:none;padding:6px 16px 16px;border-top:3px solid var(--ink)}
+  .stage.active .sbody{display:block}
+  .task{margin:12px 0 0}
+  .task strong{font-weight:600}
+
+  /* ---------- the extract ---------- */
+  details.extract{margin:0 0 18px;border:3px solid var(--ink);background:#f6efdc;padding-top:0}
+  details.extract>summary{background:var(--ink);color:var(--paper);padding:12px 14px;min-height:50px}
+  .ex{counter-reset:s;padding:4px 16px 14px}
+  .ex p{margin:12px 0;font-size:21px;line-height:1.6;color:var(--ink)}
+  .ex .s{counter-increment:s}
+  .ex .s::before{content:counter(s);font:700 11px/1 var(--geo);color:var(--fear);vertical-align:super;margin-right:3px}
+  .ex p.cut{color:var(--mute);text-align:center;letter-spacing:.35em;margin:2px 0}
+  .exnote{font:500 13px/1.4 var(--geo);letter-spacing:.06em;color:var(--mute);margin:6px 0 0}
+
+  /* quotes: colour carries the argument */
+  .quote{display:block;position:relative;margin:14px 0;padding:12px 14px 12px 18px;background:var(--paper2);border-left:10px solid var(--ink);font:italic 500 21px/1.35 var(--serif)}
+  .quote.fear{border-color:var(--fear)}
+  .quote.calm{border-color:var(--calm)}
+  .quote.pivot{border-color:var(--pivot)}
+  .tag{display:inline-block;margin:0 10px 4px 0;padding:4px 8px 3px;font:700 11px/1 var(--geo);font-style:normal;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);background:var(--ink);vertical-align:2px}
+  .tag.fear{background:var(--fear)}
+  .tag.calm{background:var(--calm)}
+  .tag.pivot{background:var(--pivot);color:var(--ink)}
+
+  ul{margin:8px 0 6px;padding-left:22px}
+  li{margin:6px 0}
+  li::marker{color:var(--fear);font-weight:700}
+
+  details{margin-top:14px;border-top:2px solid var(--ink);padding-top:8px}
+  summary{cursor:pointer;font:600 13px/1.2 var(--geo);letter-spacing:.16em;text-transform:uppercase;min-height:34px;display:flex;align-items:center;color:var(--calm)}
+  details p,details li{font-size:18.5px;color:#2d2b25}
+
+  .frame{margin:16px 0;padding:18px 14px;background:var(--ink);color:var(--paper);font:600 22px/1.7 var(--serif);text-align:center}
+  .frame u{display:inline-block;min-width:80px;text-decoration:none;border-bottom:3px solid var(--pivot);margin:0 6px}
+
+  .nav{display:flex;gap:0;margin-top:18px;border:3px solid var(--ink)}
+  button{font:700 14px/1 var(--geo);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:0;padding:16px 14px;min-height:52px;cursor:pointer;flex:1}
+  button + button{border-left:3px solid var(--ink)}
+  button.primary{background:var(--fear);color:var(--paper)}
+  button:disabled{opacity:.35;cursor:default}
+  button:active:not(:disabled){transform:translateY(1px)}
+
+  .prep{margin-top:22px;border-top:6px solid var(--ink);padding-top:12px}
+  .prep h3{font:700 15px/1.2 var(--geo);letter-spacing:.2em;text-transform:uppercase;margin:0 0 4px}
+  .prep li{font-size:18.5px}
+  a{color:var(--calm);text-decoration-thickness:2px;text-underline-offset:3px}
+  .fine{color:var(--mute);font-size:16.5px;margin-top:14px}
+
+  @media (max-width:520px){
+    body{font-size:19px}
+    h1{font-size:38px;max-width:64%}
+    .dateline{max-width:100%;margin-top:18px}
+    .cover .wrap{min-height:0}
+    .num{flex-basis:52px;font-size:28px}
+    .quote{font-size:19.5px}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="halftone"></div>
+  <svg class="geo" viewBox="0 0 330 330" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+    <rect x="150" y="-10" width="46" height="260" fill="#ede3cb"/>
+    <circle cx="238" cy="118" r="82" fill="#b5311f"/>
+    <path d="M330 150 A150 150 0 0 0 180 300 L330 300 Z" fill="#2b6e69"/>
+    <rect x="96" y="212" width="190" height="14" fill="#d9a021"/>
+    <circle cx="238" cy="118" r="16" fill="#1c1b18"/>
+  </svg>
+  <div class="wrap">
+    <div class="kicker">Year 12 · Speech analysis · 20 minutes</div>
+    <h1><span>Arsenal</span><span class="of">of</span><span>Democracy</span></h1>
+    <p class="dateline"><b>Franklin D. Roosevelt · 29 December 1940</b>The US is officially neutral. How do you make a distant threat feel urgent without asking for war?</p>
+  </div>
+</div>
+
+<div class="bar" id="bar">
+  <div class="wrap">
+    <div class="barlabel"><span id="tlabel">Stage 1 of 4 · Hook</span></div>
+  </div>
+  <div class="track" id="track"></div>
+</div>
+
+<main class="wrap">
+
+  <details class="extract" open>
+    <summary>The extract · FDR, fireside chat, 29 December 1940</summary>
+    <div class="ex">
+      <p><span class="s">This is not a fireside chat on war.</span> <span class="s">It is a talk on national security, because the nub of the whole purpose of your President is to keep you now, and your children later, and your grandchildren much later, out of a last-ditch war for the preservation of American independence and all of the things that American independence means to you and to me and to ours.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">Never before since Jamestown and Plymouth Rock has our American civilization been in such danger as now.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">The Nazi masters of Germany have made it clear that they intend not only to dominate all life and thought in their own country, but also to enslave the whole of Europe, and then to use the resources of Europe to dominate the rest of the world.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">If Great Britain goes down, the Axis powers will control the continents of Europe, Asia, Africa, Australia, and the high seas — and they will be in a position to bring enormous military and naval resources against this hemisphere.</span> <span class="s">It is no exaggeration to say that all of us, in all the Americas, would be living at the point of a gun — a gun loaded with explosive bullets, economic as well as military.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">There are also American citizens, many of them in high places, who, unwittingly in most cases, are aiding and abetting the work of these agents.</span> <span class="s">I do not charge these American citizens with being foreign agents.</span> <span class="s">But I do charge them with doing exactly the kind of work that the dictators want done in the United States.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">No man can tame a tiger into a kitten by stroking it.</span> <span class="s">There can be no appeasement with ruthlessness.</span> <span class="s">There can be no reasoning with an incendiary bomb.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">There is no demand for sending an American Expeditionary Force outside our own borders.</span> <span class="s">There is no intention by any member of your Government to send such a force.</span> <span class="s">You can, therefore, nail — nail any talk about sending armies to Europe as deliberate untruth.</span></p>
+      <p class="cut">· · ·</p>
+      <p><span class="s">We must be the great arsenal of democracy.</span> <span class="s">For us this is an emergency as serious as war itself.</span> <span class="s">We must apply ourselves to our task with the same resolution, the same sense of urgency, the same spirit of patriotism and sacrifice as we would show were we at war.</span></p>
+      <p class="exnote">Extracts, in speech order. Refer to the small red sentence numbers.</p>
+    </div>
+  </details>
+
+  <section class="stage" data-min="3" data-name="Hook" data-c="ink">
+    <div class="shead"><div class="num">1</div><div class="stitle"><h2>Hook</h2></div></div>
+    <div class="sbody">
+      <p class="task">December 1940:</p>
+      <ul>
+        <li>France has fallen.</li>
+        <li>Britain remains at war.</li>
+        <li>The United States is officially neutral.</li>
+        <li>Roosevelt wants to mobilise American economic and industrial support without committing American troops.</li>
+      </ul>
+      <p class="task"><strong>What can Roosevelt offer Britain without committing American soldiers?</strong> Take two quick answers.</p>
+      <p class="task">Then the task: how does he make a distant threat feel urgent, without asking for war?</p>
+    </div>
+  </section>
+
+  <section class="stage" data-min="7" data-name="Close read" data-c="fear">
+    <div class="shead"><div class="num">2</div><div class="stitle"><h2>Close read</h2></div></div>
+    <div class="sbody">
+      <p class="task">Pairs, using the extract above. For each, find evidence and cite the sentence numbers:</p>
+      <ul>
+        <li><strong>Scale:</strong> how large is the danger made to feel?</li>
+        <li><strong>The enemy’s vocabulary:</strong> what words does the Axis get?</li>
+        <li><strong>Pronouns:</strong> where does “we” begin and end?</li>
+      </ul>
+      <p class="task">Destination: how do scale, vocabulary and pronouns work together to turn a foreign conflict into an American security crisis?</p>
+      <span class="quote fear"><span class="tag fear">Fear</span>“Never before since Jamestown and Plymouth Rock has our American civilization been in such danger as now.”</span>
+    </div>
+  </section>
+
+  <section class="stage" data-min="6" data-name="Power and framing" data-c="calm">
+    <div class="shead"><div class="num">3</div><div class="stitle"><h2>Power and framing</h2></div></div>
+    <div class="sbody">
+      <p class="task">Each pair finds <strong>one move that frightens</strong> and <strong>one that reassures</strong>. He sends both signals in the same breath. Why?</p>
+      <span class="quote fear"><span class="tag fear">Fear</span>“There can be no appeasement with ruthlessness.”</span>
+      <span class="quote calm"><span class="tag calm">Calm</span>“There is no demand for sending an American Expeditionary Force outside our own borders.”</span>
+      <span class="quote pivot"><span class="tag pivot">Pivot</span>“We must be the great arsenal of democracy. For us this is an emergency as serious as war itself.”</span>
+      <p class="task">Push: he never names his opponents. Look at sentences 7–9. How does he accuse without accusing, and what does that do to anyone who disagrees?</p>
+    </div>
+  </section>
+
+  <section class="stage" data-min="2" data-name="Pressure test" data-c="pivot">
+    <div class="shead"><div class="num">4</div><div class="stitle"><h2>Pressure test</h2></div></div>
+    <div class="sbody">
+      <p class="task">Whole class. The core question:</p>
+      <p class="task"><strong>Who belongs to Roosevelt’s democratic “we”, and who is excluded?</strong></p>
+      <p class="task">Extend it:</p>
+      <ul>
+        <li>Can a country defend democracy abroad while denying equality at home?</li>
+        <li>Who actually gets to participate in the arsenal?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stage" data-min="2" data-name="Exit line" data-c="ink">
+    <div class="shead"><div class="num">5</div><div class="stitle"><h2>Exit line</h2></div></div>
+    <div class="sbody">
+      <p class="task">One sentence each, on paper or the iPad:</p>
+      <div class="frame">FDR presents American involvement as <u>&nbsp;</u> rather than <u>&nbsp;</u>, using <u>&nbsp;</u> to persuade his audience that <u>&nbsp;</u>.</div>
+      <p class="task">Be ready to read yours aloud.</p>
+    </div>
+  </section>
+
+
+  <div class="nav">
+    <button id="prevBtn">← Previous</button>
+    <button id="nextBtn" class="primary">Next stage →</button>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  var stages=[].slice.call(document.querySelectorAll('.stage'));
+  var label=document.getElementById('tlabel');
+  var prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn');
+  var track=document.getElementById('track');
+  var cur=0;
+  var segs=stages.map(function(s){
+    var d=document.createElement('div');d.className='seg';d.style.flex=s.dataset.min;
+    d.innerHTML='<i></i>';track.appendChild(d);return d;
+  });
+  function render(){
+    stages.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+    label.textContent='Stage '+(cur+1)+' of '+stages.length+' · '+stages[cur].dataset.name;
+    segs.forEach(function(sg,i){
+      sg.classList.toggle('done',i<cur);
+      sg.classList.toggle('now',i===cur);
+    });
+    prevBtn.disabled=cur===0;
+    nextBtn.disabled=cur===stages.length-1;
+    nextBtn.textContent=cur===stages.length-1?'Last stage':'Next stage →';
+  }
+  function go(i){
+    cur=Math.max(0,Math.min(stages.length-1,i));
+    render();
+    try{
+      var bar=document.getElementById('bar');
+      var y=stages[cur].getBoundingClientRect().top+window.pageYOffset-bar.offsetHeight-8;
+      window.scrollTo({top:y,behavior:'smooth'});
+    }catch(e){}
+  }
+  nextBtn.addEventListener('click',function(){go(cur+1);});
+  prevBtn.addEventListener('click',function(){go(cur-1);});
+  stages.forEach(function(s,i){s.querySelector('.shead').addEventListener('click',function(){go(i);});});
+  cur=0;render();
+})();
+</script>
+</body>
+</html>
